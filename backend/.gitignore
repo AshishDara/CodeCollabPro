@@ -1,0 +1,5 @@
+# Dependencies
+/node_modules
+
+# Environment Variables - VERY IMPORTANT
+.env
