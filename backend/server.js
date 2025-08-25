@@ -30,10 +30,6 @@ const io = new Server(httpServer, {
     },
 });
 
-// important middleware configuration to handle preflight requests
-app.use(cors()); 
-app.use(express.json());
-
 // Middleware
 app.use(cors()); // Enable CORS for API routes
 app.use(express.json()); // Enable JSON body parsing
