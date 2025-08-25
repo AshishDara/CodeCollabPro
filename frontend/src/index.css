@@ -383,3 +383,26 @@ border: 1px solid var(--border-color);
   }
 }
 
+/* Add to the end of index.css */
+
+.error-section {
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid #ff4d4d;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.error-section h4 {
+    color: #ff4d4d !important;
+}
+
+.code-block {
+    background-color: var(--input-bg-color);
+    padding: 1rem;
+    border-radius: 5px;
+    white-space: pre-wrap; /* Allows the code to wrap */
+    word-wrap: break-word;
+    margin-top: 0.5rem;
+}
+

@@ -2,24 +2,31 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
-// This component now acts as a replacement sidebar
 const ExplanationPanel = ({ isLoading, response, onClose }) => {
     return (
-        // Use an <aside> element with a new class name for styling
         <aside className="explanation-panel">
             <div className="panel-header">
-                <h3>AI Code Explanation</h3>
+                <h3>AI Analysis</h3>
                 <button onClick={onClose} className="btn close-btn">
                     &times;
                 </button>
             </div>
             <div className="panel-body">
-                {/* Show a loading message while waiting for the AI */}
                 {isLoading && <p>Analyzing your code...</p>}
-
-                {/* Display the response once it arrives */}
                 {!isLoading && response && (
                     <>
+                        {/* Conditionally render the bug analysis section if an error was found */}
+                        {response.hasError && (
+                            <div className="error-section">
+                                <h4>Bug Analysis:</h4>
+                                <p>{response.errorAnalysis}</p>
+                                <h4>Suggested Fix:</h4>
+                                <pre className="code-block">
+                                    <code>{response.correctedCode}</code>
+                                </pre>
+                            </div>
+                        )}
+
                         <h4>Explanation:</h4>
                         <ReactMarkdown>{response.explanation}</ReactMarkdown>
 
