@@ -122,9 +122,13 @@ You will need to create a `.env` file in both the `frontend` and `backend` direc
 **Backend (`/backend/.env`):**
 
 PORT=5001
+
 MONGO_URI=<YOUR_MONGODB_ATLAS_URI>
+
 JWT_SECRET=<YOUR_JWT_SECRET>
+
 GEMINI_API_KEY=<YOUR_GOOGLE_GEMINI_API_KEY>
+
 CORS_ORIGIN=http://localhost:5173
 
 
