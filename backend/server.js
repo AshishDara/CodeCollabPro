@@ -15,9 +15,6 @@ import authRoutes from './routes/authRoutes.js';
 import documentRoutes from './routes/documentRoutes.js';
 import aiRoutes from './routes/aiRoutes.js';
 
-// important middleware configuration to handle preflight requests
-app.use(cors()); 
-app.use(express.json());
 
 // Connect to Database
 connectDB();
@@ -27,11 +24,15 @@ connectDB();
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
-  cors: {
-    origin: "*", // Allow all origins for development
-    methods: ["GET", "POST"],
-  },
+    cors: {
+        origin: "*", // Allow all origins for development
+        methods: ["GET", "POST"],
+    },
 });
+
+// important middleware configuration to handle preflight requests
+app.use(cors()); 
+app.use(express.json());
 
 // Middleware
 app.use(cors()); // Enable CORS for API routes
