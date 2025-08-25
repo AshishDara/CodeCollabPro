@@ -15,8 +15,13 @@ import authRoutes from './routes/authRoutes.js';
 import documentRoutes from './routes/documentRoutes.js';
 import aiRoutes from './routes/aiRoutes.js';
 
+// important middleware configuration to handle preflight requests
+app.use(cors()); 
+app.use(express.json());
+
 // Connect to Database
 connectDB();
+
 
 // Initializations
 const app = express();
