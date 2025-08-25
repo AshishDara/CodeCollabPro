@@ -31,27 +31,9 @@ const io = new Server(httpServer, {
 });
 
 
-// --- CRITICAL: Explicit CORS Configuration ---
-// This provides a detailed configuration for CORS and specifically handles
-// the pre-flight OPTIONS requests that browsers send for security.
-const corsOptions = {
-    origin: process.env.CORS_ORIGIN || '*',
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true, // Allows cookies or authorization headers
-};
-
-// This line handles pre-flight requests for all routes
-app.options('*', cors(corsOptions)); 
-
-// This line applies the CORS settings to all other requests
-app.use(cors(corsOptions));
-
-// This middleware is for parsing JSON bodies
-app.use(express.json());
-
-// // Middleware
-// app.use(cors()); // Enable CORS for API routes
-// app.use(express.json()); // Enable JSON body parsing
+// Middleware
+app.use(cors()); // Enable CORS for API routes
+app.use(express.json()); // Enable JSON body parsing
 
 // --- Health Check Route ---
 app.get('/', (req, res) => {
