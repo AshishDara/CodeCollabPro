@@ -405,4 +405,15 @@ border: 1px solid var(--border-color);
     word-wrap: break-word;
     margin-top: 0.5rem;
 }
+.no-error-section {
+    background-color: rgba(74, 237, 136, 0.1); 
+    border: 1px solid var(--highlight-green); 
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.no-error-section h4 {
+    color: var(--highlight-green) !important; 
+}
 

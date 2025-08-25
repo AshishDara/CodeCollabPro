@@ -15,8 +15,8 @@ const ExplanationPanel = ({ isLoading, response, onClose }) => {
                 {isLoading && <p>Analyzing your code...</p>}
                 {!isLoading && response && (
                     <>
-                        {/* Conditionally render the bug analysis section if an error was found */}
-                        {response.hasError && (
+                        {/* Conditional rendering for error analysis */}
+                        {response.hasError ? (
                             <div className="error-section">
                                 <h4>Bug Analysis:</h4>
                                 <p>{response.errorAnalysis}</p>
@@ -24,6 +24,11 @@ const ExplanationPanel = ({ isLoading, response, onClose }) => {
                                 <pre className="code-block">
                                     <code>{response.correctedCode}</code>
                                 </pre>
+                            </div>
+                        ) : (
+                            <div className="no-error-section">
+                                <h4>Analysis:</h4>
+                                <p>No bugs or syntax errors found.</p>
                             </div>
                         )}
 
