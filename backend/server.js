@@ -25,23 +25,14 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: process.env.CORS_ORIGIN || '*', // Allow all origins for development
+        origin: "*", // Allow all origins for development
         methods: ["GET", "POST"],
     },
 });
 
 
 // Middleware
-const corsOptions = {
-    origin: process.env.CORS_ORIGIN || '*',
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true, // Allows cookies or authorization headers
-};
-// This line handles pre-flight requests for all routes
-app.options('*', cors(corsOptions)); 
-// This line applies the CORS settings to all other requests
-app.use(cors(corsOptions));
-// app.use(cors()); // Enable CORS for API routes
+app.use(cors()); // Enable CORS for API routes
 app.use(express.json()); // Enable JSON body parsing
 
 // Health Check Route
