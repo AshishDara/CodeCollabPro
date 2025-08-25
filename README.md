@@ -2,7 +2,7 @@
 
 A high-performance, real-time collaborative code editor built on the MERN stack, featuring a secure multi-user environment and an integrated AI assistant for on-demand code explanation and debugging.
 
-[**Live Demo**](https://code-collab-pro.vercel.app/) &nbsp;&nbsp;·&nbsp;&nbsp; 
+[**Live Demo**](https://code-collab-pro.vercel.app/) &nbsp;&nbsp; 
 
 ---
 
