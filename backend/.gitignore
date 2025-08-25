@@ -3,3 +3,5 @@
 
 # Environment Variables - VERY IMPORTANT
 .env
+
+.DS_Store
