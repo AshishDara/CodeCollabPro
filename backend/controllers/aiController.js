@@ -20,23 +20,25 @@ export const explainCode = async (req, res) => {
 
         // --- This is our strict, product-focused prompt ---
         const prompt = `
-            You are an expert code analysis assistant. Your task is to explain a given code snippet.
+            You are an expert code analysis and debugging assistant. Your task is to analyze a given code snippet.
 
             IMPORTANT INSTRUCTIONS:
             - Your response must be ONLY a raw JSON object.
             - Do NOT wrap the JSON in markdown code fences (\`\`\`json ... \`\`\`) or any other text.
-            - The JSON object must have the following structure: { "language": "string", "explanation": "string", "keyConcepts": ["string"] }
+            - The JSON object must have the following structure: { "explanation": "string", "hasError": boolean, "errorAnalysis": "string | null", "correctedCode": "string | null", "keyConcepts": ["string"] }
 
-            - "language": Identify the programming language of the code snippet.
-            - "explanation": Provide a clear, concise, step-by-step explanation of what the code does. Use markdown for formatting within this string (e.g., for bullet points or code formatting).
-            - "keyConcepts": List the main programming concepts or keywords present in the code in an array of strings.
+            - "explanation": Provide a clear, step-by-step explanation of the code's purpose. Use markdown for formatting.
+            - "hasError": A boolean (true or false) indicating if you found any bugs or syntax errors.
+            - "errorAnalysis": If hasError is true, provide a concise explanation of the error. If hasError is false, this field must be null.
+            - "correctedCode": If hasError is true, provide the corrected version of the code snippet. If hasError is false, this field must be null.
+            - "keyConcepts": List the main programming concepts in an array of strings.
 
             Here is the code snippet to analyze:
             ---
             ${code}
             ---
 
-            Repeat: Respond with ONLY a raw JSON object.
+            Repeat: Respond with ONLY a raw JSON object with the specified structure.
         `;
 
         // Generate content using the prompt
