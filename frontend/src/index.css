@@ -236,9 +236,10 @@ text-align: center;
     border-color: var(--highlight-green);
 }
 .client.currentUser .userName {
-    color: var(--highlight-green); /* Set the text color directly to green */
+    color: var(--highlight-green);
     font-weight: 700;
 }
+
 .editor-main {
 overflow-y: auto;
 }
