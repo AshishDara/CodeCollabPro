@@ -35,7 +35,7 @@ const io = new Server(httpServer, {
 app.use(cors()); // Enable CORS for API routes
 app.use(express.json()); // Enable JSON body parsing
 
-// --- Health Check Route ---
+// Health Check Route
 app.get('/', (req, res) => {
     res.status(200).send('Server is healthy.');
 });
