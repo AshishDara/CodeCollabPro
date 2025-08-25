@@ -145,7 +145,7 @@ const EditorPage = () => {
                             className="btn ai-btn"
                             onClick={handleExplainCode}
                         >
-                            Explain/Debug with AI
+                            Debug/Explain with AI
                         </button>
                         <button
                             className="btn copy-btn"
