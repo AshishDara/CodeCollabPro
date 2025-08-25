@@ -5,6 +5,7 @@ import { javascript } from '@codemirror/lang-javascript';
 import { dracula } from '@uiw/codemirror-theme-dracula';
 import { lineNumbers } from '@codemirror/view';
 
+
 const Editor = ({ socketRef, documentId, onCodeChange }) => {
     const [code, setCode] = useState('');
 
