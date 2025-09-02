@@ -18,7 +18,7 @@ export const explainCode = async (req, res) => {
         // Get the generative model
         const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-        // --- This is our strict, product-focused prompt ---
+        // This is strict, product-focused prompt 
         const prompt = `
             You are an expert code analysis and debugging assistant. Your task is to analyze a given code snippet.
 
