@@ -16,7 +16,7 @@ export const explainCode = async (req, res) => {
         // Initialize the Google Generative AI client
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         // Get the generative model
-        const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
 
         // This is strict, product-focused prompt 
         const prompt = `
