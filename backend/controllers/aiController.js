@@ -22,15 +22,20 @@ export const explainCode = async (req, res) => {
         const response = await genAI.models.generateContent({
             model: "gemini-2.5-flash",
             contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: {
+                responseMimeType: "application/json",
+            },    
         });
 
         const text = response.text;
+        const match = text.match(/```json\n([\s\S]*?)\n```/);
+        const cleanedText = match ? match[1] : text;
         
         if (typeof text !== 'string') {
             throw new Error('AI did not return a valid text response.');
         }
 
-        res.status(200).json(JSON.parse(text));
+        res.status(200).json(JSON.parse(cleanedText));
 
     } catch (error) {
         console.error('AI API Error:', error);
