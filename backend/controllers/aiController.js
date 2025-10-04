@@ -25,7 +25,7 @@ export const explainCode = async (req, res) => {
             contents: [{ parts: [{ text: prompt }] }],
         });
 
-        const text = result.text(); 
+        const text = result.responseId.text(); 
         
         res.status(200).json(JSON.parse(text));
 
