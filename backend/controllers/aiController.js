@@ -21,7 +21,7 @@ export const explainCode = async (req, res) => {
         `;
 
         const result = await genAI.models.generateContent({
-            model: "gemini-pro",
+            model: "gemini-2.5-flash",
             contents: [{ parts: [{ text: prompt }] }],
         });
 
