@@ -25,7 +25,7 @@ export const explainCode = async (req, res) => {
         // The CORRECT, one-step method from the documentation you provided.
         // We call generateContent directly on the 'models' property.
         const result = await genAI.models.generateContent({
-            model: "gemini-pro",
+            model: "gemini-2.5-flash",
             contents: [{ parts: [{ text: prompt }] }],
         });
 
