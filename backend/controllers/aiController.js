@@ -46,7 +46,7 @@ export const explainCode = async (req, res) => {
 
         const jsonString = rawText.substring(jsonStartIndex, jsonEndIndex + 1);
 
-        console.log("Sending to frontend:", jsonString);
+        // console.log("Sending to frontend:", jsonString);
         res.status(200).json(JSON.parse(jsonString));
 
     } catch (error) {
