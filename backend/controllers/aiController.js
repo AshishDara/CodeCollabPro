@@ -1,3 +1,5 @@
+// File: backend/controllers/aiController.js
+
 import { GoogleGenAI } from "@google/genai";
 
 // The client gets the API key from the environment variable GEMINI_API_KEY
@@ -20,13 +22,21 @@ export const explainCode = async (req, res) => {
             ${code}
         `;
 
-        const result = await genAI.models.generateContent({
-            model: "gemini-2.5-flash",
+        // The await call returns the response object directly, as per your screenshot.
+        const response = await genAI.models.generateContent({
+            model: "gemini-pro",
             contents: [{ parts: [{ text: prompt }] }],
         });
 
-        const text = result.responseId.text(); 
+        // The text is a PROPERTY on the response object, NOT a function.
+        // This line now directly matches your screenshot's logic.
+        const text = response.text;
         
+        // Safety check in case the AI returns non-JSON text
+        if (typeof text !== 'string') {
+            throw new Error('AI did not return a valid text response.');
+        }
+
         res.status(200).json(JSON.parse(text));
 
     } catch (error) {
