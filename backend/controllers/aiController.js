@@ -1,4 +1,3 @@
-// File: backend/controllers/aiController.js
 
 import { GoogleGenAI } from "@google/genai";
 
@@ -22,14 +21,12 @@ export const explainCode = async (req, res) => {
             ${code}
         `;
 
-        // The CORRECT, one-step method from the documentation you provided.
-        // We call generateContent directly on the 'models' property.
         const result = await genAI.models.generateContent({
             model: "gemini-2.5-flash",
             contents: [{ parts: [{ text: prompt }] }],
         });
 
-        const response = result.response;
+        const response = result.responseId;
         const text = response.text();
         
         res.status(200).json(JSON.parse(text));
