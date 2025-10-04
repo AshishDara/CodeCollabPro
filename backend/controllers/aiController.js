@@ -1,9 +1,9 @@
 // File: backend/controllers/aiController.js
 
-import { GoogleGenerativeAI } from "@google/genai";
+import { GoogleGenAI } from "@google/genai"; // <-- Corrected Name
 
 // The client gets the API key from the environment variable GEMINI_API_KEY
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = new GoogleGenAI(process.env.GEMINI_API_KEY); // <-- Corrected Name
 
 export const explainCode = async (req, res) => {
     try {
@@ -12,7 +12,6 @@ export const explainCode = async (req, res) => {
             return res.status(400).json({ message: 'Code snippet is required.' });
         }
 
-        // For text-only input, use the gemini-pro model
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
         const prompt = `
@@ -29,7 +28,6 @@ export const explainCode = async (req, res) => {
         const response = await result.response;
         const text = response.text();
         
-        // Assuming the AI returns a valid JSON string, parse and send it
         res.status(200).json(JSON.parse(text));
 
     } catch (error) {
