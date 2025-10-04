@@ -1,4 +1,3 @@
-
 import { GoogleGenAI } from "@google/genai";
 
 // The client gets the API key from the environment variable GEMINI_API_KEY
@@ -22,12 +21,11 @@ export const explainCode = async (req, res) => {
         `;
 
         const result = await genAI.models.generateContent({
-            model: "gemini-2.5-flash",
+            model: "gemini-pro",
             contents: [{ parts: [{ text: prompt }] }],
         });
 
-        const response = result.response;
-        const text = response.text();
+        const text = result.text; 
         
         res.status(200).json(JSON.parse(text));
 
