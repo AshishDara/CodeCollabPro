@@ -10,19 +10,23 @@ export const explainCode = async (req, res) => {
         }
 
         // Part 1: Stricter prompt to prevent markdown
-        const prompt = `
-            Analyze the following code snippet.
-            Your response MUST be a single, raw JSON object.
-            Do NOT include any explanatory text, markdown formatting, or backticks around the JSON.
+        const prompt = `Analyze the following code snippet. Your response MUST be a single, raw JSON object and nothing else.
+            Do NOT include any explanatory text, markdown formatting, or backticks.
 
-            The JSON object must have two keys: "explanation" and "bugs".
-            - "explanation": A clear, concise explanation of what the code does.
-            - "bugs": A string describing any potential bugs or "No obvious bugs found.".
+            The JSON object must have the following structure:
+            - "hasError": A boolean value, 'true' if you find bugs or syntax errors, otherwise 'false'.
+            - "errorAnalysis": A string explaining the bug. If no bug, this should be an empty string.
+            - "correctedCode": A string containing the corrected code. If no bug, this should be an empty string.
+            - "explanation": A string (in markdown format) explaining what the code does.
+            - "keyConcepts": An array of strings, with each string being a key concept found in the code.
 
-            Example of the required output format:
-            {"explanation": "Your explanation here.", "bugs": "Your bug report here."}
+            Example of a response for code with an error:
+            {"hasError": true, "errorAnalysis": "The function 'myFunc' is called but never defined.", "correctedCode": "function myFunc() {\\n  console.log('Corrected');\\n}", "explanation": "This Javascript code defines and calls a function named 'myFunc'.", "keyConcepts": ["function", "console.log"]}
+            
+            Example of a response for code with no error:
+            {"hasError": false, "errorAnalysis": "", "correctedCode": "", "explanation": "This Javascript code correctly logs a message to the console.", "keyConcepts": ["console.log"]}
 
-            Code:
+            Analyze this code:
             ${code}
         `;
 
