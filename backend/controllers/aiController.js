@@ -1,9 +1,9 @@
 // File: backend/controllers/aiController.js
 
-import { GoogleGenAI } from "@google/genai"; // <-- Corrected Name
+import { GoogleGenAI } from "@google/genai";
 
 // The client gets the API key from the environment variable GEMINI_API_KEY
-const genAI = new GoogleGenAI(process.env.GEMINI_API_KEY); // <-- Corrected Name
+const genAI = new GoogleGenAI(process.env.GEMINI_API_KEY);
 
 export const explainCode = async (req, res) => {
     try {
@@ -11,8 +11,6 @@ export const explainCode = async (req, res) => {
         if (!code) {
             return res.status(400).json({ message: 'Code snippet is required.' });
         }
-
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
         const prompt = `
             Analyze the following code snippet. Provide a response in a single, clean JSON object with two keys: "explanation" and "bugs".
@@ -24,8 +22,14 @@ export const explainCode = async (req, res) => {
             ${code}
         `;
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
+        // The CORRECT, one-step method from the documentation you provided.
+        // We call generateContent directly on the 'models' property.
+        const result = await genAI.models.generateContent({
+            model: "gemini-pro",
+            contents: [{ parts: [{ text: prompt }] }],
+        });
+
+        const response = result.response;
         const text = response.text();
         
         res.status(200).json(JSON.parse(text));
